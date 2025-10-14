@@ -1,0 +1,237 @@
+:root{
+    --bg:#F7EEE9; /* slightly deeper blush for better contrast */
+    --card:#ffffff; /* clean white cards */
+    --ink:#2a2a2a; /* primary text */
+    --muted:#5b6478; /* secondary text */
+    --brand:#e7cba9; /* champagne */
+    --brand-2:#f3d6d1; /* blush */
+    --ring: rgba(231,203,169,.55);
+    --radius: 16px;
+    --shadow: 0 8px 22px rgba(14,18,27,.08);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%;scroll-behavior:smooth}
+  body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink)}
+  
+  /* Header pinned */
+  a{color:inherit;text-decoration:none}
+  .container{max-width:1120px;margin:0 auto;padding:0 20px}
+  header{position:sticky;top:0;z-index:999;background:rgba(255,255,255,.92);backdrop-filter:saturate(160%) blur(8px);border-bottom:1px solid rgba(11,18,32,.08);box-shadow:0 6px 14px rgba(14,18,27,.06)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:70px}
+  .brand{display:flex;gap:12px;align-items:center;font-weight:700}
+  .logo{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--brand),var(--brand-2));box-shadow:0 8px 18px rgba(14,18,27,.08)}
+  .nav a{opacity:.9}
+  .nav-links{display:flex;gap:20px;align-items:center}
+  .btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 16px;border-radius:14px;background:var(--brand);color:#322b20;font-weight:700;border:1px solid rgba(11,18,32,.06);box-shadow:0 8px 16px rgba(231,203,169,.35);transition:transform .15s ease, box-shadow .15s ease}
+  .btn:hover{transform:translateY(-1px);box-shadow:0 12px 20px rgba(231,203,169,.45)}
+  .btn.ghost{background:#fff;color:var(--ink);border:1px solid rgba(11,18,32,.12)}
+  
+  /* Hero */
+  .hero{padding:72px 0 24px}
+  .hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:36px;align-items:center}
+  h1{font-family:"Playfair Display", serif;font-weight:700;font-size:clamp(34px,4.2vw,56px);line-height:1.06;margin:10px 0 12px}
+  .lead{font-size:clamp(16px,1.8vw,19px);color:var(--muted);max-width:58ch}
+  .hero-card{background:linear-gradient(180deg,#ffffff 0%, #f6f7fb 100%);border:1px solid rgba(11,18,32,.08);padding:22px;border-radius:var(--radius);box-shadow:var(--shadow)}
+  .hero .cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
+  .badges{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}
+  .badge{font-size:13px;padding:8px 12px;border-radius:999px;background:rgba(243,214,209,.25);border:1px solid rgba(231,203,169,.5)}
+  
+  section{padding:56px 0}
+  .section-title{
+    font-family:'Tangerine', cursive;
+    font-size:60px;     /* increased from 44px */
+    line-height:1.1;
+    margin:0 0 18px;
+    color:#3b3533;
+  }
+  .muted {
+    color: var(--muted);
+    font-size: 18px;   /* increased from the default */
+    line-height: 1.5;
+  }
+  
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .card{background:linear-gradient(180deg,#ffffff 0%, #f6f7fb 100%);border:1px solid rgba(11,18,32,.08);padding:22px;border-radius:var(--radius);box-shadow:var(--shadow)}
+  .card h3{margin:6px 0 8px;font-size:18px}
+  .chip{display:inline-block;font-size:12px;padding:6px 10px;border-radius:999px;background:rgba(231,203,169,.25);border:1px solid rgba(231,203,169,.45);margin-right:8px;margin-top:4px}
+  
+  .pricing{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .price-card{background:linear-gradient(180deg,#ffffff 0%, #f6f7fb 100%);border:1px solid rgba(11,18,32,.08);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow);position:relative}
+  .price{font-size:30px;font-weight:700;margin:12px 0}
+  .list{list-style:none;padding:0;margin:0}
+  .list li{display:flex;gap:10px;align-items:flex-start;padding:6px 0}
+  .check{width:18px;height:18px;flex:0 0 18px;border-radius:6px;background:linear-gradient(135deg,var(--brand),var(--brand-2))}
+  
+  .stripe{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:center;background:linear-gradient(180deg,#ffffff 0%, #f7f7fb 100%);border:1px solid rgba(11,18,32,.08);padding:26px;border-radius:var(--radius);box-shadow:var(--shadow)}
+  
+  .areas{display:flex;flex-wrap:wrap;gap:10px}
+  .pill{padding:8px 12px;border:1px solid rgba(11,18,32,.12);border-radius:999px;color:var(--muted); background: rgba(255,255,255,.75);      /* NEW: light background */
+    box-shadow: 0 2px 6px rgba(14,18,27,.06);}
+  
+  .faq{max-width:900px}
+  details{background:linear-gradient(180deg,#ffffff 0%, #f6f7fb 100%);border:1px solid rgba(11,18,32,.08);border-radius:12px;padding:16px;margin-bottom:10px;margin-left: 0;width: 100%;  }
+  details summary{cursor:pointer;font-weight:600}
+  
+ /* Footer layout adjustment */
+.foot-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 30px 0;
+  border-top: 1px solid rgba(11,18,32,.08);
+  color: var(--muted);
+}
+footer .hero-contact {
+  margin: 2px 0;       /* reduces vertical gap */
+  line-height: 1.2;    /* tighter line spacing */
+}
+
+/* Left side text */
+.footer-left {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* Social media icons (same style you liked) */
+.social-links {
+  display: flex;
+  gap: 14px;
+}
+
+.social-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;    /* was 38px */
+  height: 48px;   /* was 38px */
+  border-radius: 50%;
+  background: var(--brand);
+  color: #322b20;
+  font-size: 22px; /* was 18px */
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.social-links a:hover {
+  background: var(--brand-2);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+}
+
+/* Responsive: stack for mobile */
+@media (max-width: 700px) {
+  .foot-flex {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .social-links {
+    margin-top: 8px;
+  }
+}
+  
+  /* Responsive */
+  @media (max-width: 900px){
+    .hero-grid{grid-template-columns:1fr}
+    .cards,.pricing{grid-template-columns:1fr}
+    .foot-grid{grid-template-columns:1fr}
+    .nav-links{display:none}
+    .menu-btn{display:inline-flex}
+  }
+  @media (min-width:901px){.menu-btn{display:none}}
+  
+  /* Focus ring */
+  .ring{outline:2px solid transparent;outline-offset:2px}
+  .ring:focus-visible{outline-color:var(--ring)}
+  /* --- Pin the top bar (always visible) --- */
+header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;                    /* keep it above cards/sections */
+    background: rgba(255,255,255,.96);
+    backdrop-filter: saturate(160%) blur(8px);
+    border-bottom: 1px solid rgba(11,18,32,.08);
+    box-shadow: 0 6px 14px rgba(14,18,27,.06);
+    height: 70px;                     /* matches .nav height */
+  }
+  
+/* Make FAQ align with the rest of the sections */
+.faq {
+    max-width: 1120px;  /* same as .container */
+    margin: 0 auto;     /* center it */
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .hero-contact {
+  margin-top: 12px;
+  font-size: 16px;
+  color: #3b3533;
+}
+.hero-contact a {
+  color: #3b3533;
+  font-weight: 600;
+}
+.hero-contact a:hover {
+  text-decoration: underline;
+  color: var(--brand);
+}
+
+/* Floating Contact Buttons */
+.floating-contact {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1000;
+}
+
+.float-btn {
+  background: var(--brand);
+  color: #322b20;
+  font-weight: 700;
+  border-radius: 30px;
+  padding: 10px 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.float-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.2);
+  background: var(--brand-2);
+}
+
+/* Optional: Adjust size and spacing on mobile */
+@media (max-width: 600px) {
+  .floating-contact {
+    bottom: 16px;
+    right: 16px;
+    flex-direction: row;
+    gap: 8px;
+  }
+  .float-btn {
+    padding: 10px 12px;
+    font-size: 14px;
+  }
+}
+
+.site-logo {
+  height: 48px; /* adjust as needed */
+  width: auto;
+  border-radius: 8px; /* optional, softens the corners */
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
+.nav-logo {
+  height: 36px;   /* adjust to fit your nav */
+  width: auto;
+  margin-right: 8px;
+  vertical-align: middle;
+}
