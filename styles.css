@@ -309,3 +309,31 @@ body.nav-open #mobileNav { display:block; }
 
 /* Make sure the button is tappable above the header content */
 .menu-btn { z-index: 1002; position: relative; }
+
+/* --- Mobile width clamps & overflow guards --- */
+@media (max-width: 600px){
+  .container { padding-left:12px; padding-right:12px; }
+
+  /* Ensure grid/cards never force the viewport wider */
+  .hero-grid, .cards, .pricing, .stripe, .areas, .foot-flex, .faq, section {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  /* Prevent flex children from causing overflow */
+  .hero-grid, .hero-card, .stripe { min-width: 0; }
+  .hero-card { overflow: hidden; }          /* clips any tiny rounding spill */
+  .hero-card img { width:100%; height:auto; display:block; }
+
+  /* Headings/text can break instead of pushing layout */
+  h1, .lead, .section-title { overflow-wrap:anywhere; word-break:break-word; }
+
+  /* Buttons can’t exceed the viewport */
+  .btn, .btn.ghost { max-width: 100%; }
+
+  /* If you keep the “33vw” hamburger, still cap it so it never stretches layout */
+  .menu-btn { max-width: 140px; }
+}
+
+/* Beat the inline nowrap on the chip row (if you can't edit the HTML) */
+.hero-card > div { flex-wrap: wrap !important; }
