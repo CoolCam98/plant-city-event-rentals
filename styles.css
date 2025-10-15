@@ -237,7 +237,9 @@ footer .hero-contact{ margin:2px 0; line-height:1.2 }
   .menu-btn{
     display:inline-flex;
     align-items:center; justify-content:center;
-    width: 36px; height:36px;      /* smaller button */
+    width: 33vw; height:36px;      /* smaller button */
+    max-width: 140px; /* optional cap */
+    min-width: 56px;  /* keeps tap area decent */
     padding:0; border-radius:10px;
     background:#fff; color:#2a2a2a;
     border:1px solid rgba(11,18,32,.12);
@@ -309,10 +311,3 @@ body.nav-open #mobileNav { display: block; }
 
 /* Keep it below the fixed 70px header when open */
 #mobileNav { position: sticky; top: 70px; z-index: 998; }
-
-/* Limit hamburger button width */
-.menu-btn {
-  width: 33vw !important;   /* one-third of screen width */
-  max-width: 140px;         /* optional: cap it so it's not huge on desktop/tablet */
-  justify-content: center;  /* keeps the icon centered */
-}
