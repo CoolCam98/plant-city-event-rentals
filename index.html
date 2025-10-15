@@ -37,7 +37,10 @@
       <!-- JOTFORM LINK -->
       <a class="btn" href="https://form.jotform.com/252797311636160" target="_blank" rel="noopener" id="inquiryBtn">Check Availability</a>
     </nav>
-    <button class="btn ghost menu-btn" id="menuToggle" aria-expanded="false" aria-controls="mobileNav">Menu</button>
+    <button class="btn ghost menu-btn" id="menuToggle" aria-expanded="false" aria-controls="mobileNav">
+  <span class="hamburger" aria-hidden="true"></span>
+  <span class="sr-only">Menu</span>
+</button>
   </div>
 </header>
 
@@ -330,3 +333,25 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 </body>
 </html>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const toggle = document.getElementById('menuToggle');
+  let mobileNav = document.getElementById('mobileNav');
+
+  // If your existing JS creates #mobileNav dynamically, this will run after it's created too
+  document.addEventListener('click', (e) => {
+    if (e.target.closest('#mobileNav a')) {
+      // Close the menu after clicking a link
+      if (toggle) toggle.setAttribute('aria-expanded', 'false');
+      if (mobileNav) mobileNav.style.display = 'none';
+    }
+  });
+
+  // If your script builds mobileNav later, keep a reference updated
+  const observer = new MutationObserver(() => {
+    mobileNav = document.getElementById('mobileNav') || mobileNav;
+  });
+  observer.observe(document.body, { childList: true, subtree: true });
+});
+</script>
