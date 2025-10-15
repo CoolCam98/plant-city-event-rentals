@@ -264,15 +264,7 @@ footer .hero-contact{ margin:2px 0; line-height:1.2 }
 
 /* ========== OPTIONAL: MOBILE NAV DROPDOWN BEHAVIOR ========== */
 /* ✅ matches your JS-created #mobileNav; structural only (no color changes) */
-#mobileNav{
-  position:sticky; top:70px; z-index:998;
-  background:rgba(255,255,255,.96);
-  backdrop-filter:saturate(160%) blur(6px);
-  -webkit-backdrop-filter:saturate(160%) blur(6px);
-  border-bottom:1px solid rgba(11,18,32,.08);
-  box-shadow:0 6px 14px rgba(14,18,27,.06);
-  padding-bottom:8px;
-}
+
 
 /* === Mobile-only hamburger button (tablet+mobile) === */
 @media (max-width:900px){
@@ -306,8 +298,14 @@ footer .hero-contact{ margin:2px 0; line-height:1.2 }
 }
 
 /* Hide drawer unless opened */
-#mobileNav { display: none; }
-body.nav-open #mobileNav { display: block; }
+#mobileNav { display:none; position:sticky; top:70px; z-index:998; background:rgba(255,255,255,.96);
+  backdrop-filter:saturate(160%) blur(6px); -webkit-backdrop-filter:saturate(160%) blur(6px);
+  border-bottom:1px solid rgba(11,18,32,.08); box-shadow:0 6px 14px rgba(14,18,27,.06); padding-bottom:8px;
+}
+body.nav-open #mobileNav { display:block; }
 
 /* Keep it below the fixed 70px header when open */
 #mobileNav { position: sticky; top: 70px; z-index: 998; }
+
+/* Make sure the button is tappable above the header content */
+.menu-btn { z-index: 1002; position: relative; }

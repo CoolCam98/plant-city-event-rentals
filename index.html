@@ -42,6 +42,14 @@
 </button>
   </div>
 </header>
+<div id="mobileNav" hidden>
+  <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;padding:10px 20px 16px">
+    <a class="btn ghost" href="#services">Services</a>
+    <a class="btn ghost" href="#pricing">Packages</a>
+    <a class="btn ghost" href="#faq">FAQ</a>
+    <a class="btn" id="inquiryBtnMobile" href="https://form.jotform.com/252797311636160" target="_blank" rel="noopener">Check Availability</a>
+  </div>
+</div>
 
 <main id="top">
   <!-- HERO -->
@@ -264,6 +272,8 @@
     </div>
   </div>
 </footer>
+<script src="./script.js" defer></script>
+
 
 <!-- LocalBusiness Schema (basic) -->
 <script type="application/ld+json">
@@ -291,100 +301,6 @@
   <a href="mailto:rentals@premiummediafl.com" class="float-btn email">✉️ Email</a>
 </div>
 
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  console.log('[PCE] JS loaded');
+</body>
 
-  // ---- CONFIG ----
-  const FORM_URL = "https://form.jotform.com/252797311636160";
 
-  // ---- ELEMENTS ----
-  const header = document.querySelector('header');
-  const toggle = document.getElementById('menuToggle');
-
-  // ---- BUILD MOBILE NAV IF NEEDED ----
-  let mobileNav = document.getElementById('mobileNav');
-  function ensureMobileNav() {
-    mobileNav = document.getElementById('mobileNav');
-    if (!mobileNav) {
-      const div = document.createElement('div');
-      div.id = 'mobileNav';
-      div.innerHTML = `
-        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;padding:10px 20px 16px">
-          <a class="btn ghost" href="#services">Services</a>
-          <a class="btn ghost" href="#pricing">Packages</a>
-          <a class="btn ghost" href="#faq">FAQ</a>
-          <a class="btn" id="inquiryBtnMobile" href="${FORM_URL}" target="_blank" rel="noopener">Check Availability</a>
-        </div>
-      `;
-      div.style.display = 'none'; // start hidden; CSS toggles visibility via .nav-open
-      header.insertAdjacentElement('afterend', div);
-      console.log('[PCE] mobileNav created');
-      mobileNav = div;
-    }
-  }
-
-  // ---- MENU TOGGLE ----
-  function openMenu() {
-    ensureMobileNav();
-    document.body.classList.add('nav-open');
-    toggle?.setAttribute('aria-expanded', 'true');
-    mobileNav.style.display = 'block';
-  }
-  function closeMenu() {
-    document.body.classList.remove('nav-open');
-    toggle?.setAttribute('aria-expanded', 'false');
-    if (mobileNav) mobileNav.style.display = 'none';
-  }
-  function toggleMenu() {
-    const open = document.body.classList.contains('nav-open');
-    open ? closeMenu() : openMenu();
-  }
-
-  if (toggle) {
-    toggle.addEventListener('click', (e) => {
-      e.preventDefault();
-      toggleMenu();
-    });
-  } else {
-    console.warn('[PCE] #menuToggle not found');
-  }
-
-  // ---- IN-PAGE LINKS: #faq, #pricing, etc. ----
-  document.addEventListener('click', (e) => {
-    const a = e.target.closest('a[href^="#"]');
-    if (!a) return;
-
-    const href = a.getAttribute('href');
-    if (!href || href === '#') return; // ignore dummy
-
-    const target = document.querySelector(href);
-    if (!target) return; // let browser handle bad hash
-
-    e.preventDefault();
-    closeMenu();
-    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    history.pushState(null, '', href);
-  });
-
-  // ---- WIRE ALL INQUIRY BUTTONS TO JOTFORM ----
-  [
-    '#inquiry', '#inquiryBtn', '#inquiryBtnHero', '#inquiryBtnStripe', '#inquiryBtnMobile'
-  ].forEach(sel => {
-    const el = document.querySelector(sel);
-    if (el) {
-      el.setAttribute('href', FORM_URL);
-      el.setAttribute('target', '_blank');
-      el.setAttribute('rel', 'noopener');
-      console.log('[PCE] wired', sel, '-> JotForm');
-    }
-  });
-
-  // Close menu on ESC or when resizing to desktop
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
-  window.addEventListener('resize', () => { if (window.innerWidth > 900) closeMenu(); });
-
-  // Safety: if any error earlier prevented menu creation, ensure once at end:
-  ensureMobileNav();
-});
-</script>
