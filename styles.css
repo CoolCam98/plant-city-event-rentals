@@ -206,10 +206,6 @@ footer .hero-contact{ margin:2px 0; line-height:1.2 }
   .section-title{ font-size:44px; margin-bottom:12px }
   section{ padding:42px 0; }
 
-  /* Center "What You Get" heading & paragraph */
-  #services .container{ text-align:center }
-  #services .muted{ margin-left:auto; margin-right:auto }
-
   /* One-per-row cards and packages, full width */
   .cards{ grid-template-columns:1fr; gap:14px }
   .card{ width:100%; margin:0 auto }
@@ -241,7 +237,7 @@ footer .hero-contact{ margin:2px 0; line-height:1.2 }
   .menu-btn{
     display:inline-flex;
     align-items:center; justify-content:center;
-    width:36px; height:36px;      /* smaller button */
+    width: 10px; height:36px;      /* smaller button */
     padding:0; border-radius:10px;
     background:#fff; color:#2a2a2a;
     border:1px solid rgba(11,18,32,.12);

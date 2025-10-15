@@ -339,19 +339,40 @@ document.addEventListener('DOMContentLoaded', () => {
   const toggle = document.getElementById('menuToggle');
   let mobileNav = document.getElementById('mobileNav');
 
-  // If your existing JS creates #mobileNav dynamically, this will run after it's created too
-  document.addEventListener('click', (e) => {
-    if (e.target.closest('#mobileNav a')) {
-      // Close the menu after clicking a link
-      if (toggle) toggle.setAttribute('aria-expanded', 'false');
-      if (mobileNav) mobileNav.style.display = 'none';
-    }
-  });
-
-  // If your script builds mobileNav later, keep a reference updated
-  const observer = new MutationObserver(() => {
+  // Keep reference up-to-date if your JS creates #mobileNav dynamically
+  const obs = new MutationObserver(() => {
     mobileNav = document.getElementById('mobileNav') || mobileNav;
   });
-  observer.observe(document.body, { childList: true, subtree: true });
+  obs.observe(document.body, { childList: true, subtree: true });
+
+  // Handle ALL same-page anchor links (e.g., #faq, #pricing)
+  document.addEventListener('click', (e) => {
+    const link = e.target.closest('a[href^="#"]');
+    if (!link) return;
+
+    const hash = link.getAttribute('href');
+    // Ignore plain "#" or empty
+    if (!hash || hash === '#') return;
+
+    const target = document.querySelector(hash);
+    if (!target) return; // no matching id; let browser handle it
+
+    // We have a valid in-page target: prevent default jump
+    e.preventDefault();
+
+    // Close mobile nav (so it doesn't cover the content)
+    if (mobileNav && mobileNav.style.display !== 'none') {
+      mobileNav.style.display = 'none';
+    }
+    if (toggle) {
+      toggle.setAttribute('aria-expanded', 'false');
+    }
+
+    // Smooth scroll to the section
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    // Update URL hash for history/back button
+    history.pushState(null, '', hash);
+  });
 });
 </script>
