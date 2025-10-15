@@ -37,6 +37,9 @@
       <!-- JOTFORM LINK -->
       <a class="btn" href="https://form.jotform.com/252797311636160" target="_blank" rel="noopener" id="inquiryBtn">Check Availability</a>
     </nav>
+    <button class="btn ghost menu-btn" id="menuToggle" aria-expanded="false" aria-controls="mobileNav">
+  <!-- icon drawn by CSS; leave empty -->
+</button>
   </div>
 </header>
 
@@ -314,6 +317,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <a class="btn" id="inquiryBtnMobile" href="${FORM_URL}" target="_blank" rel="noopener">Check Availability</a>
         </div>
       `;
+      div.style.display = 'none'; // start hidden; CSS toggles visibility via .nav-open
       header.insertAdjacentElement('afterend', div);
       console.log('[PCE] mobileNav created');
       mobileNav = div;
