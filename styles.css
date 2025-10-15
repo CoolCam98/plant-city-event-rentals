@@ -47,7 +47,7 @@ header{
 .nav a{ opacity:.9 }
 .nav-links{ display:flex; gap:20px; align-items:center }
 .menu-btn{ display:none }  /* desktop keeps full nav */
-main{ padding-top:96px }   /* space below fixed header */
+main{ padding-top:80px }   /* space below fixed header */
 
 /* ========== BUTTONS ========== */
 .btn{
@@ -237,7 +237,7 @@ footer .hero-contact{ margin:2px 0; line-height:1.2 }
   .menu-btn{
     display:inline-flex;
     align-items:center; justify-content:center;
-    width: 10px; height:36px;      /* smaller button */
+    width: 36px; height:36px;      /* smaller button */
     padding:0; border-radius:10px;
     background:#fff; color:#2a2a2a;
     border:1px solid rgba(11,18,32,.12);
