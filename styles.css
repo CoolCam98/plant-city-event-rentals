@@ -265,3 +265,35 @@ footer .hero-contact{ margin:2px 0; line-height:1.2 }
   box-shadow:0 6px 14px rgba(14,18,27,.06);
   padding-bottom:8px;
 }
+/* === Mobile-only hamburger button === */
+@media (max-width:900px){
+  .nav-links{ display:none }                 /* hide desktop links on small screens */
+  .menu-btn{
+    display:inline-flex;
+    align-items:center; justify-content:center;
+    width:38px; height:38px;
+    padding:0; border-radius:10px;
+    background:#fff; color:#2a2a2a;
+    border:1px solid rgba(11,18,32,.12);
+    box-shadow:0 2px 6px rgba(0,0,0,.06);
+    font-size:0;                /* hide any text like "Menu" */
+    position:relative;
+  }
+  /* draw hamburger (3 bars) */
+  .menu-btn::before{
+    content:""; display:block;
+    width:18px; height:2px; background:#2a2a2a; border-radius:2px;
+    box-shadow:0 -6px 0 #2a2a2a, 0 6px 0 #2a2a2a;  /* top & bottom bars */
+  }
+  /* optional: morph to X when open */
+  .menu-btn[aria-expanded="true"]::before{ background:transparent; box-shadow:none }
+  .menu-btn[aria-expanded="true"]::after{
+    content:""; position:absolute; width:18px; height:2px; background:#2a2a2a; border-radius:2px;
+    transform:rotate(45deg);
+  }
+}
+
+/* Ensure button never shows on desktop */
+@media (min-width:901px){
+  .menu-btn{ display:none !important; }
+}
