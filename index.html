@@ -1,58 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Plant City Event Rentals | Photo Booth Rentals in Plant City, FL</title>
+
   <!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-7P2K6K31LL"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-7P2K6K31LL');
-</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-7P2K6K31LL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-7P2K6K31LL');
+  </script>
+
   <meta name="description" content="Plant City Event Rentals provides photo booth rentals for weddings, parties, and corporate events in Plant City, Tampa, Lakeland, and Central Florida." />
   <meta name="robots" content="index,follow" />
+
   <!-- Open Graph -->
   <meta property="og:title" content="Plant City Event Rentals" />
   <meta property="og:description" content="Modern photo booth rentals for weddings & events across Plant City and Central Florida." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://yourdomain.com" />
-  <meta property="og:image" content="https://yourdomain.com/og-image.jpg" />
-  <!-- Favicon (optional) -->
+  <meta property="og:url" content="https://plantcityeventrentals.com" />
+  <meta property="og:image" content="https://plantcityeventrentals.com/images/og.jpg" />
+
+  <!-- Favicon -->
   <link rel="icon" type="image/png" href="images/favicon.png" />
-  <!-- Fonts -->
+
+  <!-- Fonts & CSS -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@600;700&family=Tangerine&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- LocalBusiness Schema (moved into head) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Plant City Event Rentals",
+    "image": "https://plantcityeventrentals.com/images/og.jpg",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Plant City",
+      "addressRegion": "FL",
+      "addressCountry": "US"
+    },
+    "areaServed": ["Plant City","Tampa","Lakeland","Brandon","Valrico","Riverview"],
+    "url": "https://plantcityeventrentals.com",
+    "description": "Photo booth rentals for weddings, parties, and corporate events across Plant City and Central Florida.",
+    "telephone": ""
+  }
+  </script>
 </head>
 
 <body>
-<a class="skip-link" href="#top">Skip to main content</a>
-<header>
+<header role="banner">
   <div class="container nav">
     <a href="#top" class="brand" aria-label="Plant City Event Rentals home">
       <img src="images/favicon.png" alt="Plant City Event Rentals logo" class="nav-logo">
       <span>Plant City Event Rentals</span>
     </a>
-    <nav class="nav-links">
+
+    <nav class="nav-links" aria-label="Primary">
       <a href="#services">Services</a>
       <a href="#pricing">Packages</a>
       <a href="#faq">FAQ</a>
       <a href="#contact">Contact</a>
-      <!-- JOTFORM LINK -->
       <a class="btn" href="https://form.jotform.com/252797311636160" target="_blank" rel="noopener" id="inquiryBtn">Check Availability</a>
     </nav>
-    <button class="menu-btn" id="menuToggle" aria-expanded="false" aria-controls="mobileNav">
-  <!-- icon drawn by CSS; leave empty -->
-</button>
+
+    <button class="menu-btn" id="menuToggle" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu"></button>
   </div>
 </header>
-<div id="mobileNav" hidden>
+
+<!-- Mobile drawer (single instance) -->
+<div id="mobileNav" hidden role="navigation" aria-label="Mobile">
   <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;padding:10px 20px 16px">
     <a class="btn ghost" href="#services">Services</a>
     <a class="btn ghost" href="#pricing">Packages</a>
@@ -69,7 +93,6 @@
         <h1>Photo Booth Rentals for Weddings & Events</h1>
         <p class="lead">Joyful, light-hearted experiences for weddings, quinceañeras, corporate parties, and more. Clean design, friendly service, and share-worthy photos—every time.</p>
         <div class="cta-row">
-          <!-- JOTFORM LINK -->
           <a class="btn ring" href="https://form.jotform.com/252797311636160" target="_blank" rel="noopener" id="inquiryBtnHero">Check Availability</a>
           <a class="btn ghost ring" href="#pricing">See Packages</a>
         </div>
@@ -78,6 +101,7 @@
           <a href="mailto:rentals@premiummediafl.com">rentals@premiummediafl.com</a>
         </p>
       </div>
+
       <div class="hero-card" aria-label="Feature image placeholder">
         <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=1400&auto=format&fit=crop" alt="Guests posing in a photo booth at a wedding" style="width:100%;height:auto;border-radius:12px" />
         <div style="display:flex;gap:12px;margin-top:12px;">
@@ -120,25 +144,25 @@
     </div>
   </section>
 
-  <!-- PACKAGES -->
+  <!-- PRICING -->
   <section id="pricing">
     <div class="container">
       <h2 class="section-title">Simple, Flexible Packages</h2>
       <p class="muted">Each package includes a <strong>3-hour minimum</strong>. Need more time? Add hours as you go.</p>
       <div class="pricing">
         <div class="price-card">
-          <h3>✨ Spark </h3>
+          <h3>✨ Spark</h3>
           <p class="muted">Beautiful photos + instant sharing</p>
           <div class="price">$299</div>
           <ul class="list">
-            <li><span class="check"></span> 3 hours included </li>
-            <li><span class="check"></span> Box of fun props </li>
+            <li><span class="check"></span> 3 hours included</li>
+            <li><span class="check"></span> Box of fun props</li>
             <li><span class="check"></span> Online gallery + text/email delivery</li>
             <li><span class="check"></span> Pro setup 1 hr before, teardown after</li>
           </ul>
         </div>
         <div class="price-card" style="outline:2px solid rgba(233,191,180,.6)">
-          <h3>🎉 Soirée </h3>
+          <h3>🎉 Soirée</h3>
           <p class="muted">Live posing help + guest guidance</p>
           <div class="price">$449</div>
           <ul class="list">
@@ -149,8 +173,8 @@
           </ul>
         </div>
         <div class="price-card">
-          <h3>💎 Glam </h3>
-          <p class="muted">Physical prints + keepsake </p>
+          <h3>💎 Glam</h3>
+          <p class="muted">Physical prints + keepsake</p>
           <div class="price">$549</div>
           <ul class="list">
             <li><span class="check"></span> Everything in Soirée</li>
@@ -165,7 +189,7 @@
     </div>
   </section>
 
-  <!-- STRIPE CTA -->
+  <!-- CTA STRIPE -->
   <section aria-label="availability callout">
     <div class="container stripe">
       <div>
@@ -173,14 +197,13 @@
         <p class="muted" style="margin:6px 0 0">We respond quickly. Weekends fill up fast—especially spring & fall.</p>
       </div>
       <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:flex-end">
-        <!-- JOTFORM LINKS -->
         <a class="btn" href="https://form.jotform.com/252797311636160" target="_blank" rel="noopener" id="inquiryBtnStripe">Check Availability</a>
         <a class="btn ghost" href="#faq">Read FAQ</a>
       </div>
     </div>
   </section>
 
-  <!-- AREAS SERVED -->
+  <!-- AREAS -->
   <section>
     <div class="container">
       <h2 class="section-title">Proudly Serving</h2>
@@ -231,87 +254,51 @@
     </div>
   </section>
 
-  <!-- CONTACT / INQUIRY -->
+  <!-- CONTACT -->
   <section id="contact">
     <div class="container">
       <h2 class="section-title">Ready to Celebrate?</h2>
       <p class="muted">Tap below to inquire. You’ll be taken to a short form, and we’ll confirm availability.</p>
-      <!-- JOTFORM LINK -->
       <p><a id="inquiry" class="btn" href="https://form.jotform.com/252797311636160" target="_blank" rel="noopener">Inquire Now</a></p>
     </div>
   </section>
 
-<footer>
-  <div class="container foot-flex">
-    <div class="footer-left">
-      <div class="brand">
-        <strong>Plant City Event Rentals</strong>
+  <!-- FOOTER -->
+  <footer>
+    <div class="container foot-flex">
+      <div class="footer-left">
+        <div class="brand">
+          <strong>Plant City Event Rentals</strong>
+        </div>
+        <p class="hero-contact">
+          <a href="mailto:rentals@premiummediafl.com">Rentals@PremiumMediaFL.com</a>
+        </p>
+        <p class="hero-contact">
+          <a href="tel:18138511410">(813) 851-1410</a>
+        </p>
       </div>
-      <p class="hero-contact">
-        <a href="mailto:rentals@premiummediafl.com">Rentals@PremiumMediaFL.com</a>
-      </p>
-      <p class="hero-contact">
-        <a href="tel:18138511410">(813) 851-1410</a>
-      </p>
+
+      <div class="social-links">
+        <a href="https://www.instagram.com/plantcityeventrentals" target="_blank" aria-label="Instagram">
+          <i class="fab fa-instagram"></i><span class="sr-only">Instagram</span>
+        </a>
+        <a href="https://www.facebook.com/plantcityeventrentals" target="_blank" aria-label="Facebook">
+          <i class="fab fa-facebook-f"></i><span class="sr-only">Facebook</span>
+        </a>
+        <a href="https://www.tiktok.com/@plantcityeventrentals" target="_blank" aria-label="TikTok">
+          <i class="fab fa-tiktok"></i><span class="sr-only">TikTok</span>
+        </a>
+      </div>
     </div>
+  </footer>
 
-    <div class="social-links">
-      <a href="https://www.instagram.com/plantcityeventrentals" target="_blank" aria-label="Instagram">
-        <i class="fab fa-instagram"></i>
-          <span class="sr-only">Instagram</span>
-      </a>
-      <a href="https://www.facebook.com/plantcityeventrentals" target="_blank" aria-label="Facebook">
-        <i class="fab fa-facebook-f"></i>
-          <span class="sr-only">Facebook</span>
-      </a>
-      <a href="https://www.tiktok.com/@plantcityeventrentals" target="_blank" aria-label="TikTok">
-        <i class="fab fa-tiktok"></i>
-          <span class="sr-only">tiktok</span>
-      </a>
-    </div>
+  <!-- Floating Contact Button -->
+  <div class="floating-contact">
+    <a href="tel:18138511410" class="float-btn call">📞 Call</a>
+    <a href="mailto:rentals@premiummediafl.com" class="float-btn email">✉️ Email</a>
   </div>
-</footer>
-<script src="./script.js" defer></script>
 
-
-<!-- LocalBusiness Schema (basic) -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "name": "Plant City Event Rentals",
-  "image": "https://yourdomain.com/og-image.jpg",
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Plant City",
-    "addressRegion": "FL",
-    "addressCountry": "US"
-  },
-  "areaServed": ["Plant City","Tampa","Lakeland","Brandon","Valrico","Riverview"],
-  "url": "https://yourdomain.com",
-  "description": "Photo booth rentals for weddings, parties, and corporate events across Plant City and Central Florida.",
-  "telephone": ""
-}
-</script>
-
-<!-- Floating Contact Button -->
-<div class="floating-contact">
-  <a href="tel:18138511410" class="float-btn call">📞 Call</a>
-  <a href="mailto:rentals@premiummediafl.com" class="float-btn email">✉️ Email</a>
-</div>
-
-<header role="banner">
-  <div class="container nav">
-    <!-- ...brand -->
-    <nav class="nav-links" aria-label="Primary"></nav>
-    <button class="menu-btn" id="menuToggle"
-      aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav"></button>
-  </div>
-</header>
-
-<!-- Mobile drawer -->
-<div id="mobileNav" hidden role="navigation" aria-label="Mobile"></div>
-
+  <script src="./script.js" defer></script>
+</main>
 </body>
-
-
+</html>
