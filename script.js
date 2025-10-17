@@ -5,12 +5,12 @@ document.addEventListener('DOMContentLoaded', function () {
     var mobileNav = document.getElementById('mobileNav');
     if (!toggle || !mobileNav) return;
 
-    function setOpen(open) {
-      document.body.classList.toggle('nav-open', open);
-      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-      if (open) { mobileNav.removeAttribute('hidden'); }
-      else { mobileNav.setAttribute('hidden', ''); }
-    }
+      function setOpen(open){
+  document.body.classList.toggle('nav-open', open);
+  toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  if(open){ mobileNav.removeAttribute('hidden'); } else { mobileNav.setAttribute('hidden',''); }
+}
 
     toggle.addEventListener('click', function (e) {
       // prevent the document click handler (below) from immediately closing it
@@ -37,3 +37,5 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   })();
 });
+
+

@@ -339,3 +339,19 @@ body.nav-open #mobileNav { display:block; }
 
 /* Beat the inline nowrap on the chip row (if you can't edit the HTML) */
 .hero-card > div { flex-wrap: wrap !important; }
+
+.skip-link{
+  position:absolute; left:12px; top:-40px; z-index:10000;
+  background:#000; color:#fff; padding:10px 14px; border-radius:8px;
+}
+.skip-link:focus{ top:12px; outline:2px solid #fff; }
+
+/* strong, consistent focus */
+:focus-visible{
+  outline:3px solid #005fcc;
+  outline-offset:2px;
+  border-radius:10px;
+}
+.btn:focus-visible{ outline-color:#7a4; } /* optional: brand accent */
+
+.sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0; }

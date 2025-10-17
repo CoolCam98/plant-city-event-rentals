@@ -23,6 +23,7 @@
 </head>
 
 <body>
+<a class="skip-link" href="#top">Skip to main content</a>
 <header>
   <div class="container nav">
     <a href="#top" class="brand" aria-label="Plant City Event Rentals home">
@@ -248,12 +249,15 @@
     <div class="social-links">
       <a href="https://www.instagram.com/plantcityeventrentals" target="_blank" aria-label="Instagram">
         <i class="fab fa-instagram"></i>
+          <span class="sr-only">Instagram</span>
       </a>
       <a href="https://www.facebook.com/plantcityeventrentals" target="_blank" aria-label="Facebook">
         <i class="fab fa-facebook-f"></i>
+          <span class="sr-only">Facebook</span>
       </a>
       <a href="https://www.tiktok.com/@plantcityeventrentals" target="_blank" aria-label="TikTok">
         <i class="fab fa-tiktok"></i>
+          <span class="sr-only">tiktok</span>
       </a>
     </div>
   </div>
@@ -286,6 +290,19 @@
   <a href="tel:18138511410" class="float-btn call">📞 Call</a>
   <a href="mailto:rentals@premiummediafl.com" class="float-btn email">✉️ Email</a>
 </div>
+
+<header role="banner">
+  <div class="container nav">
+    <!-- ...brand -->
+    <nav class="nav-links" aria-label="Primary"></nav>
+    <button class="menu-btn" id="menuToggle"
+      aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav"></button>
+  </div>
+</header>
+
+<!-- Mobile drawer -->
+<div id="mobileNav" hidden role="navigation" aria-label="Mobile"></div>
+
 
 </body>
 
