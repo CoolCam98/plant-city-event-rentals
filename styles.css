@@ -1,19 +1,28 @@
-/* ========== THEME TOKENS ========== */
+/* ================================
+   THEME TOKENS
+================================== */
 :root{
-  --bg:#F7EEE9;        /* blush background */
-  --card:#ffffff;      /* white cards */
-  --ink:#2a2a2a;       /* primary text */
-  --muted:#5b6478;     /* secondary text */
-  --brand:#e7cba9;     /* champagne */
-  --brand-2:#f3d6d1;   /* blush */
+  --bg:#F7EEE9;
+  --card:#ffffff;
+  --ink:#2a2a2a;
+  --muted:#5b6478;
+  --brand:#e7cba9;
+  --brand-2:#f3d6d1;
   --ring: rgba(231,203,169,.55);
   --radius: 16px;
   --shadow: 0 8px 22px rgba(14,18,27,.08);
+
+  /* Layout system */
+  --page-max: 1120px;
+  --page-gutter: 20px;  /* desktop/base gutter */
 }
 
-/* ========== GLOBAL RESETS ========== */
+/* ================================
+   GLOBAL RESET / BASE
+================================== */
 *{ box-sizing:border-box }
-html,body{ margin:0; height:100%; scroll-behavior:smooth; overflow-x:hidden }
+html{ margin:0; scroll-behavior:smooth; overflow-x:hidden; }
+body{ min-height:100%; margin:0; overflow-x:hidden; }
 body{
   font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
   background:var(--bg); color:var(--ink);
@@ -21,16 +30,24 @@ body{
 a{ color:inherit; text-decoration:none }
 img,video{ max-width:100%; height:auto; display:block }
 
-/* ========== LAYOUT ========== */
-.container{ max-width:1120px; margin:0 auto; padding:0 20px }
+/* Layout shell */
+.container{
+  max-width:var(--page-max);
+  margin-inline:auto;
+  padding-inline:var(--page-gutter);
+}
+section{ padding:56px 0 }                 /* page rhythm */
+[id]{ scroll-margin-top:110px }           /* anchor offset below fixed header */
+main{ padding-top:96px }                  /* clearance for fixed header */
 
-/* anchor offset (works even if target isn't a <section>) */
-section{ padding:56px 0; }
-[id]{ scroll-margin-top:110px; } /* ✅ ensures in-page links land below fixed header */
+/* Keep interactive layers on top */
+.hero, main, section, .stripe{ position:relative; z-index:1 }
 
-/* ========== HEADER (FIXED) ========== */
+/* ================================
+   HEADER (FIXED) & NAV
+================================== */
 header{
-  position:fixed; top:0; left:0; right:0; z-index:1000;
+  position:fixed; inset:0 0 auto 0; z-index:1000;
   background:rgba(255,255,255,.96);
   backdrop-filter:saturate(160%) blur(8px);
   -webkit-backdrop-filter:saturate(160%) blur(8px);
@@ -39,17 +56,50 @@ header{
   height:70px;
 }
 .nav{ display:flex; align-items:center; justify-content:space-between; height:70px }
-
-/* ✅ brand pushes nav to the right to give "Plant City Event Rentals" more space */
-.brand{ display:flex; gap:12px; align-items:center; font-weight:700; margin-right:auto; }
-
-.logo{ width:34px; height:34px; border-radius:10px; background:linear-gradient(135deg,var(--brand),var(--brand-2)); box-shadow:0 8px 18px rgba(14,18,27,.08) }
+.brand{ display:flex; gap:12px; align-items:center; font-weight:700; margin-right:auto }
+.logo{
+  width:34px; height:34px; border-radius:10px;
+  background:linear-gradient(135deg,var(--brand),var(--brand-2));
+  box-shadow:0 8px 18px rgba(14,18,27,.08)
+}
 .nav a{ opacity:.9 }
 .nav-links{ display:flex; gap:20px; align-items:center }
-.menu-btn{ display:none }  /* desktop keeps full nav */
-main{ padding-top:96px }   /* space below fixed header */
+.menu-btn{ display:none } /* hidden desktop */
 
-/* ========== BUTTONS ========== */
+/* ========== MOBILE DRAWER (single source of truth) ========== */
+#mobileNav{
+  position: fixed;              /* sits over the page, not in layout */
+  top: 70px;                    /* just under the fixed header */
+  left: 0;
+  right: 0;
+  display: none;                /* hidden until toggled */
+  z-index: 1000;
+
+  background: rgba(255,255,255,.96);
+  backdrop-filter: saturate(160%) blur(6px);
+  -webkit-backdrop-filter: saturate(160%) blur(6px);
+  border-bottom: 1px solid rgba(11,18,32,.08);
+  box-shadow: 0 6px 14px rgba(14,18,27,.06);
+
+  /* if content gets tall, it scrolls INSIDE the drawer, not the page */
+  max-height: calc(100dvh - 70px);
+  overflow-y: auto;
+  padding: 10px 20px 16px;
+}
+body.nav-open #mobileNav{ display:block; }
+
+/* when the drawer is open, prevent the page behind it from scrolling */
+body.nav-open{ overflow: hidden; }
+
+/* never show the drawer on desktop */
+@media (min-width:901px){
+  #mobileNav{ display:none !important; }
+}
+
+
+/* ================================
+   BUTTONS
+================================== */
 .btn{
   display:inline-flex; align-items:center; justify-content:center;
   padding:12px 16px; border-radius:14px; font-weight:700;
@@ -63,30 +113,14 @@ main{ padding-top:96px }   /* space below fixed header */
 .ring{ outline:2px solid transparent; outline-offset:2px }
 .ring:focus-visible{ outline-color:var(--ring) }
 
-/* ========== HERO ========== */
-.hero{ padding:72px 0 24px }
-.hero-grid{ display:grid; grid-template-columns:1.2fr .8fr; gap:36px; align-items:center }
+/* ================================
+   TYPOGRAPHY
+================================== */
 h1{
   font-family:"Playfair Display", serif;
   font-weight:700; font-size:clamp(34px,4.2vw,56px); line-height:1.06;
   margin:10px 0 12px;
 }
-.lead{ font-size:clamp(16px,1.8vw,19px); color:var(--muted); max-width:58ch }
-.hero-card{
-  background:linear-gradient(180deg,#ffffff 0%, #f6f7fb 100%);
-  border:1px solid rgba(11,18,32,.08); padding:22px; border-radius:var(--radius); box-shadow:var(--shadow)
-}
-.hero .cta-row{ display:flex; gap:12px; flex-wrap:wrap; margin-top:18px }
-.badges{ display:flex; gap:12px; flex-wrap:wrap; margin-top:14px }
-
-/* chips row (under hero image) */
-.chip-row{ display:flex; gap:12px; flex-wrap:wrap; margin-top:12px; justify-content:center }
-.badge{ font-size:13px; padding:8px 12px; border-radius:999px; background:rgba(243,214,209,.25); border:1px solid rgba(231,203,169,.5) }
-.hero-contact{ margin-top:12px; font-size:16px; color:#3b3533 }
-.hero-contact a{ color:#3b3533; font-weight:600 }
-.hero-contact a:hover{ text-decoration:underline; color:var(--brand) }
-
-/* ========== TITLES / TEXT ========== */
 .section-title{
   font-family:'Tangerine', cursive;
   font-size:60px; line-height:1.1;
@@ -94,19 +128,43 @@ h1{
 }
 .muted{ color:var(--muted); font-size:18px; line-height:1.5 }
 
-/* ========== SERVICES CARDS ========== */
+/* ================================
+   HERO
+================================== */
+.hero{ padding:72px 0 24px }
+.hero-grid{ display:grid; grid-template-columns:1.2fr .8fr; gap:36px; align-items:center }
+.hero-card{
+  background:linear-gradient(180deg,#ffffff 0%, #f6f7fb 100%);
+  border:1px solid rgba(11,18,32,.08); padding:22px; border-radius:var(--radius);
+  box-shadow:var(--shadow)
+}
+.hero .cta-row{ display:flex; gap:12px; flex-wrap:wrap; margin-top:18px }
+.badges{ display:flex; gap:12px; flex-wrap:wrap; margin-top:14px }
+.chip-row{ display:flex; gap:12px; flex-wrap:wrap; margin-top:12px; justify-content:center }
+.badge{
+  font-size:13px; padding:8px 12px; border-radius:999px;
+  background:rgba(243,214,209,.25); border:1px solid rgba(231,203,169,.5)
+}
+.hero-contact{ margin-top:12px; font-size:16px; color:#3b3533 }
+.hero-contact a{ color:#3b3533; font-weight:600 }
+.hero-contact a:hover{ text-decoration:underline; color:var(--brand) }
+
+/* ================================
+   CARDS / PRICING / STRIPE / AREAS
+================================== */
 .cards{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px }
 .card{
   background:linear-gradient(180deg,#ffffff 0%, #f6f7fb 100%);
-  border:1px solid rgba(11,18,32,.08); padding:22px; border-radius:var(--radius); box-shadow:var(--shadow)
+  border:1px solid rgba(11,18,32,.08); padding:22px; border-radius:var(--radius);
+  box-shadow:var(--shadow)
 }
 .card h3{ margin:6px 0 8px; font-size:18px }
+
 .chip{
   display:inline-block; font-size:12px; padding:6px 10px; border-radius:999px;
   background:rgba(231,203,169,.25); border:1px solid rgba(231,203,169,.45); margin-right:8px; margin-top:4px
 }
 
-/* ========== PRICING ========== */
 .pricing{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px }
 .price-card{
   background:linear-gradient(180deg,#ffffff 0%, #f6f7fb 100%);
@@ -117,32 +175,35 @@ h1{
 .list li{ display:flex; gap:10px; align-items:flex-start; padding:6px 0 }
 .check{ width:18px; height:18px; flex:0 0 18px; border-radius:6px; background:linear-gradient(135deg,var(--brand),var(--brand-2)) }
 
-/* ========== STRIPE CALLOUT ========== */
 .stripe{
   display:grid; grid-template-columns:1fr 1fr; gap:22px; align-items:center;
   background:linear-gradient(180deg,#ffffff 0%, #f7f7fb 100%);
   border:1px solid rgba(11,18,32,.08); padding:26px; border-radius:var(--radius); box-shadow:var(--shadow)
 }
 
-/* ========== AREAS (PILLS) ========== */
 .areas{ display:flex; flex-wrap:wrap; gap:10px }
 .pill{
   padding:8px 12px; border:1px solid rgba(11,18,32,.12); border-radius:999px; color:var(--muted);
   background:rgba(255,255,255,.75); box-shadow:0 2px 6px rgba(14,18,27,.06)
 }
 
-/* ========== FAQ ========== */
-.faq{ max-width:1120px; margin:0 auto }
+/* ================================
+   FAQ
+================================== */
+.faq{ max-width:var(--page-max); margin:0 auto }
 details{
   background:linear-gradient(180deg,#ffffff 0%, #f6f7fb 100%);
   border:1px solid rgba(11,18,32,.08); border-radius:12px; padding:16px; margin-bottom:10px; width:100%
 }
 details summary{ cursor:pointer; font-weight:600 }
 
-/* ========== FOOTER ========== */
-footer{ border-top:1px solid rgba(11,18,32,.08);
-  background: var(--card);
-  }
+/* ================================
+   FOOTER & SOCIAL
+================================== */
+footer{
+  border-top:1px solid rgba(11,18,32,.08);
+  background:var(--card);
+}
 .foot-flex{
   display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;
   gap:16px; padding:30px 0; color:var(--muted)
@@ -158,11 +219,13 @@ footer .hero-contact{ margin:2px 0; line-height:1.2 }
 }
 .social-links a:hover{ background:var(--brand-2); transform:translateY(-2px); box-shadow:0 6px 14px rgba(0,0,0,.15) }
 
-/* ========== LOGOS ========== */
+/* Logos */
 .site-logo{ height:48px; width:auto; border-radius:8px; display:inline-block; vertical-align:middle; margin-right:10px }
 .nav-logo{ height:36px; width:auto; margin-right:8px; vertical-align:middle }
 
-/* ========== FLOATING CONTACT BUTTONS ========== */
+/* ================================
+   FLOATING CONTACT
+================================== */
 .floating-contact{
   position:fixed; bottom:24px; right:24px; display:flex; flex-direction:column; gap:10px; z-index:1000
 }
@@ -172,180 +235,174 @@ footer .hero-contact{ margin:2px 0; line-height:1.2 }
 }
 .float-btn:hover{ transform:translateY(-2px); box-shadow:0 8px 18px rgba(0,0,0,.2); background:var(--brand-2) }
 
-/* ====== SAFETY: avoid overlays blocking clicks (mobile anchor taps) ====== */
-.hero, main, section, .stripe { position: relative; z-index: 1; }
-
-/* ========== RESPONSIVE: TABLET (601–900px) ========== */
-@media (min-width:601px) and (max-width:900px){
-  main{ padding-top:90px }
-  .hero{ padding:64px 0 20px }
-  .hero-grid{ grid-template-columns:1fr; gap:22px }
-  .cards{ grid-template-columns:repeat(2,1fr); gap:16px }
-  .pricing{ grid-template-columns:repeat(2,1fr); gap:16px }
-  .stripe{ grid-template-columns:1fr 1fr; gap:16px }
-
-  /* desktop nav hidden on tablet, show the menu button */
-  .nav-links{ display:none }
-  .menu-btn{ display:inline-flex }
-}
-
-/* ========== RESPONSIVE: MOBILE (≤600px) ========== */
-@media (max-width:600px){
-  /* Even side padding & prevent any overflow/zoom feel */
-  .container{ padding-left:16px; padding-right:16px }
-  .hero, .hero-grid, .cards, .pricing, .stripe, .areas, .foot-flex, .faq, .nav, header, main, section{ max-width:100vw }
-
-  main{ padding-top:86px }     /* tighter gap under fixed header */
-  .hero{ padding:40px 0 16px } /* less space above H1 */
-  .hero-grid{ grid-template-columns:1fr; gap:18px }
-  h1{ font-size:clamp(28px,7vw,36px); line-height:1.15 }
-  .lead{ font-size:15.5px; max-width:none }
-
-  /* Make call-to-action buttons full-width on mobile */
-  .btn, .btn.ghost{ width:100%; padding:14px 16px; border-radius:14px; font-size:16px }
-
-  /* Larger section titles on mobile */
-  .section-title{ font-size:44px; margin-bottom:12px }
-  section{ padding:42px 0; }
-
-  /* One-per-row cards and packages, full width */
-  .cards{ grid-template-columns:1fr; gap:14px }
-  .card{ width:100%; margin:0 auto }
-  .pricing{ grid-template-columns:1fr; gap:14px }
-  .price-card{ width:100%; margin:0 auto }
-  .price{ font-size:26px; margin:8px 0 6px }
-  .list li{ padding:5px 0 }
-
-  /* CTA stripe single column */
-  .stripe{ grid-template-columns:1fr; gap:12px; padding:18px }
-  .stripe .btn, .stripe .btn.ghost{ width:auto }
-
-  /* Bigger city pills */
-  .pill{ font-size:16px; padding:10px 14px }
-
-  /* Footer stack */
-  .foot-flex{ flex-direction:column; align-items:flex-start }
-  .social-links{ margin-top:8px; justify-content:flex-start; gap:14px }
-  .social-links a{ font-size:22px }
-
-  /* Floating contact safe margins */
-  .floating-contact{ bottom:16px; right:16px; flex-direction:row; gap:8px }
-  .float-btn{ padding:10px 12px; font-size:14px }
-
-  /* Show hamburger only on mobile, hide desktop nav */
-  .nav-links{ display:none }
-
-  /* ✅ icon-only, slightly smaller hamburger; hides "Menu" text */
-  .menu-btn{
-    display:inline-flex;
-    align-items:center; justify-content:center;
-    width: 33vw; height:36px;      /* smaller button */
-    max-width: 140px; /* optional cap */
-    min-width: 56px;  /* keeps tap area decent */
-    padding:0; border-radius:10px;
-    background:#fff; color:#2a2a2a;
-    border:1px solid rgba(11,18,32,.12);
-    box-shadow:0 2px 6px rgba(0,0,0,.06);
-    font-size:0;                  /* hide any text like "Menu" */
-    position:relative;
-  }
-  /* draw hamburger (3 bars) */
-  .menu-btn::before{
-    content:""; display:block;
-    width:18px; height:2px; background:#2a2a2a; border-radius:2px;
-    box-shadow:0 -6px 0 #2a2a2a, 0 6px 0 #2a2a2a;  /* top & bottom bars */
-  }
-  /* optional: morph to X when open */
-  .menu-btn[aria-expanded="true"]::before{ background:transparent; box-shadow:none }
-  .menu-btn[aria-expanded="true"]::after{
-    content:""; position:absolute; width:18px; height:2px; background:#2a2a2a; border-radius:2px;
-    transform:rotate(45deg);
-  }
-  .menu-btn[aria-expanded="true"] span{ display:none } /* in case inner span exists */
-}
-
-/* ========== OPTIONAL: MOBILE NAV DROPDOWN BEHAVIOR ========== */
-/* ✅ matches your JS-created #mobileNav; structural only (no color changes) */
-
-
-/* === Mobile-only hamburger button (tablet+mobile) === */
-@media (max-width:900px){
-  .nav-links{ display:none }                 /* hide desktop links on small screens */
-  .menu-btn{
-    display:inline-flex;
-    align-items:center; justify-content:center;
-    width:36px; height:36px;                 /* smaller on tablet too */
-    padding:0; border-radius:10px;
-    background:#fff; color:#2a2a2a;
-    border:1px solid rgba(11,18,32,.12);
-    box-shadow:0 2px 6px rgba(0,0,0,.06);
-    font-size:0;                /* hide any text like "Menu" */
-    position:relative;
-  }
-  .menu-btn::before{
-    content:""; display:block;
-    width:18px; height:2px; background:#2a2a2a; border-radius:2px;
-    box-shadow:0 -6px 0 #2a2a2a, 0 6px 0 #2a2a2a;
-  }
-  .menu-btn[aria-expanded="true"]::before{ background:transparent; box-shadow:none }
-  .menu-btn[aria-expanded="true"]::after{
-    content:""; position:absolute; width:18px; height:2px; background:#2a2a2a; border-radius:2px;
-    transform:rotate(45deg);
-  }
-}
-
-/* Ensure button never shows on desktop */
-@media (min-width:901px){
-  .menu-btn{ display:none !important; }
-}
-
-/* Hide drawer unless opened */
-#mobileNav { display:none; position:sticky; top:70px; z-index:998; background:rgba(255,255,255,.96);
-  backdrop-filter:saturate(160%) blur(6px); -webkit-backdrop-filter:saturate(160%) blur(6px);
-  border-bottom:1px solid rgba(11,18,32,.08); box-shadow:0 6px 14px rgba(14,18,27,.06); padding-bottom:8px;
-}
-body.nav-open #mobileNav { display:block; }
-
-/* Keep it below the fixed 70px header when open */
-#mobileNav { position: sticky; top: 70px; z-index: 998; }
-
-/* Make sure the button is tappable above the header content */
-.menu-btn { z-index: 1002; position: relative; }
-
-/* --- Mobile width clamps & overflow guards --- */
-@media (max-width: 600px){
-  .container { padding-left:12px; padding-right:12px; }
-
-  /* Ensure grid/cards never force the viewport wider */
-  .hero-grid, .cards, .pricing, .stripe, .areas, .foot-flex, .faq, section {
-    max-width: 100%;
-    overflow-x: hidden;
-  }
-
-  /* Prevent flex children from causing overflow */
-  .hero-grid, .hero-card, .stripe { min-width: 0; }
-  .hero-card { overflow: hidden; }          /* clips any tiny rounding spill */
-  .hero-card img { width:100%; height:auto; display:block; }
-
-  /* Headings/text can break instead of pushing layout */
-  h1, .lead, .section-title { overflow-wrap:anywhere; word-break:break-word; }
-
-  /* Buttons can’t exceed the viewport */
-  .btn, .btn.ghost { max-width: 100%; }
-
-  /* If you keep the “33vw” hamburger, still cap it so it never stretches layout */
-  .menu-btn { max-width: 140px; }
-}
-
-/* Beat the inline nowrap on the chip row (if you can't edit the HTML) */
-.hero-card > div { flex-wrap: wrap !important; }
-
-/* strong, consistent focus */
+/* ================================
+   ACCESSIBILITY
+================================== */
 :focus-visible{
   outline:3px solid #005fcc;
   outline-offset:2px;
   border-radius:10px;
 }
-.btn:focus-visible{ outline-color:#7a4; } /* optional: brand accent */
+.btn:focus-visible{ outline-color:#7a4 }
+.sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0 }
 
-.sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0; }
+/* ================================
+   BLOG: LIST PAGE
+================================== */
+.blog-wrap{ max-width:960px; margin:0 auto }
+.post-list{ display:grid; gap:18px }
+.post-card{
+  background:#fff;
+  border:1px solid rgba(0,0,0,.06);
+  border-radius:12px;
+  padding:22px;
+}
+.post-card h3{ margin:0 0 8px; line-height:1.25 }
+.post-meta{
+  font-size:14px;
+  color:var(--muted);
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-bottom:10px;
+}
+.read-more{ font-weight:600; text-decoration:none }
+
+/* ================================
+   BLOG: ARTICLE PAGE
+   (title + content perfectly aligned)
+================================== */
+
+/* Header spacing tight & consistent (overrides generic section padding for this section) */
+.blog-header{
+  padding-top:16px;
+  padding-bottom:8px;
+}
+
+/* Title tweaks inside the header container */
+.container.post-header h1{ margin-bottom:.25em }
+.container.post-header .post-meta{ margin-top:.25em }
+
+/* Body section: collapse the default big top padding so it hugs the header */
+.blog-body{ padding-top:12px; padding-bottom:24px }
+
+/* Body container: EXACT same box model as the header's container */
+.blog-header .container.post-header,
+.blog-body   .container.post-body{
+  max-width:var(--page-max);
+  margin-inline:auto;
+  padding-inline:var(--page-gutter);
+}
+
+/* Content rules: left-aligned text, centered block with the same gutters as title */
+.blog-body .container.post-body{
+  line-height:1.85;
+  text-align:left;
+}
+
+/* Make first child hug the title (no phantom gap) */
+.blog-body .container.post-body > *:first-child{ margin-top:0 }
+
+/* Images: responsive, left-aligned, sane width on desktop */
+.blog-body .container.post-body img{
+  display:block;
+  width:min(100%, 680px);
+  margin:24px 0;
+  border-radius:12px;
+}
+
+/* Reduce header gap under fixed nav for the first section on any page */
+main#top > section:first-of-type{ padding-top:24px }
+
+/* ================================
+   RESPONSIVE
+================================== */
+
+/* Tablet (601–900px) */
+@media (min-width:601px) and (max-width:900px){
+  main{ padding-top:90px }
+  .hero{ padding:64px 0 20px }
+  .hero-grid{ grid-template-columns:1fr; gap:22px }
+
+  .cards{ grid-template-columns:repeat(2,1fr); gap:16px }
+  .pricing{ grid-template-columns:repeat(2,1fr); gap:16px }
+  .stripe{ grid-template-columns:1fr 1fr; gap:16px }
+
+  .nav-links{ display:none }
+  .menu-btn{
+    display:inline-flex; align-items:center; justify-content:center;
+    width:36px; height:36px; padding:0; border-radius:10px;
+    background:#fff; color:#2a2a2a; border:1px solid rgba(11,18,32,.12);
+    box-shadow:0 2px 6px rgba(0,0,0,.06); font-size:0; position:relative;
+  }
+  .menu-btn::before{
+    content:""; display:block; width:18px; height:2px; background:#2a2a2a;
+    border-radius:2px; box-shadow:0 -6px 0 #2a2a2a, 0 6px 0 #2a2a2a;
+  }
+  .menu-btn[aria-expanded="true"]::before{ background:transparent; box-shadow:none }
+  .menu-btn[aria-expanded="true"]::after{
+    content:""; position:absolute; width:18px; height:2px; background:#2a2a2a;
+    border-radius:2px; transform:rotate(45deg);
+  }
+}
+
+/* Mobile (≤600px) */
+@media (max-width:600px){
+  /* Slightly smaller universal gutter on mobile for breathing room */
+  :root{ --page-gutter: 16px; }
+
+  .container{ padding-left:var(--page-gutter); padding-right:var(--page-gutter) }
+  main{ padding-top:86px }
+  section{ padding:42px 0 }
+
+  h1{ font-size:clamp(28px,7vw,36px); line-height:1.15 }
+  .section-title{ font-size:44px; margin-bottom:12px }
+
+  .hero{ padding:40px 0 16px }
+  .hero-grid{ grid-template-columns:1fr; gap:18px }
+
+  .btn, .btn.ghost{ width:100%; padding:14px 16px; border-radius:14px; font-size:16px }
+
+  .cards, .pricing{ grid-template-columns:1fr; gap:14px }
+  .price{ font-size:26px; margin:8px 0 6px }
+  .list li{ padding:5px 0 }
+
+  .stripe{ grid-template-columns:1fr; gap:12px; padding:18px }
+  .stripe .btn, .stripe .btn.ghost{ width:auto }
+
+  .pill{ font-size:16px; padding:10px 14px }
+
+  .foot-flex{ flex-direction:column; align-items:flex-start }
+  .social-links{ margin-top:8px; justify-content:flex-start; gap:14px }
+  .social-links a{ font-size:22px }
+
+  .floating-contact{ bottom:16px; right:16px; flex-direction:row; gap:8px }
+  .float-btn{ padding:10px 12px; font-size:14px }
+
+  .nav-links{ display:none }
+  .menu-btn{
+    display:inline-flex; align-items:center; justify-content:center;
+    width:120px; max-width:140px; min-width:56px; height:36px; padding:0; border-radius:10px;
+    background:#fff; color:#2a2a2a; border:1px solid rgba(11,18,32,.12);
+    box-shadow:0 2px 6px rgba(0,0,0,.06); font-size:0; position:relative;
+  }
+  .menu-btn::before{
+    content:""; display:block; width:18px; height:2px; background:#2a2a2a; border-radius:2px;
+    box-shadow:0 -6px 0 #2a2a2a, 0 6px 0 #2a2a2a;
+  }
+  .menu-btn[aria-expanded="true"]::before{ background:transparent; box-shadow:none }
+  .menu-btn[aria-expanded="true"]::after{
+    content:""; position:absolute; width:18px; height:2px; background:#2a2a2a; border-radius:2px; transform:rotate(45deg);
+  }
+
+  /* Blog header & body share identical gutters on mobile, so edges line up */
+  .container.post-header{ padding-left:var(--page-gutter); padding-right:var(--page-gutter) }
+  .container.post-header h1{ font-size:30px; line-height:1.2 }
+
+  .blog-body .container.post-body img{ width:100%; margin:18px 0 }
+}
+
+/* ================================
+   MISC FIXES
+================================== */
+.hero-card > div{ flex-wrap:wrap } /* prevent chip row overflow */
