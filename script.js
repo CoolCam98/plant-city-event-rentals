@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function () {
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setOpen(false); });
     window.addEventListener('resize', function () { if (window.innerWidth > 900) setOpen(false); });
 
-    var FORM_URL = "https://form.jotform.com/252797311636160";
+    var FORM_URL = "https://square.site/appointments/buyer/widget/sn4cy8jiz3eqzp/LR5XBVY2DBV83";
     ['#inquiry', '#inquiryBtn', '#inquiryBtnHero', '#inquiryBtnStripe', '#inquiryBtnMobile'].forEach(function (sel) {
       var el = document.querySelector(sel);
       if (el) {
